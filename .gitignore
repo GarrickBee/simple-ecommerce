@@ -32,3 +32,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 .env
 .env.production
+package-lock.json
+node_modules

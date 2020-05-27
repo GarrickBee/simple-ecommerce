@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -11,3 +11,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	https://codeigniter.com/user_guide/general/hooks.html
 |
 */
+
+$hook['pre_system'] = function () {
+
+    $dotenv = Dotenv\Dotenv::createImmutable(FCPATH);
+    $dotenv->load();
+};
+/* End of file hooks.php */
+/* Location: ./application/config/hooks.php */
