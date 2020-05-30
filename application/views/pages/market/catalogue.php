@@ -30,15 +30,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									style='max-height:150px;object-fit:contain' 
 									alt='A rad wolf' />"
 								?>
-								<a>
+								<a href="<?php echo base_url('market/product/') . $product['id'] ?>">
 									<div class="mask rgba-white-slight"></div>
 								</a>
 							</div>
 							<!-- Product Description -->
 							<div class="card-body">
-
-								<h5 class="card-title"><?php echo $product['name'] ?> </h5>
-								<hr>
+								<a href="<?php echo base_url('market/product/') . $product['id'] ?>">
+									<h5 class="card-title"><?php echo $product['name'] ?> </h5>
+									<hr>
+								</a>
 								<?php
 								// print_r($product['sale_price']);
 								// print_r($product['status']);
@@ -66,7 +67,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				}
 				?>
 			</div>
+
+			<!-- Pagination -->
+			<?php $this->load->view('pages/market/pagination') ?>
 		</div>
-		<?php $this->load->view('pages/home/pagination') ?>
+
 	</div>
 </section>

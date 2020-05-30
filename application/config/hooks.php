@@ -14,7 +14,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 $hook['pre_system'] = function () {
 
-    $dotenv = Dotenv\Dotenv::createImmutable(FCPATH);
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__, '.env');
     $dotenv->load();
 };
 /* End of file hooks.php */
