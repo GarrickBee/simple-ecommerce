@@ -1,579 +1,72 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 ?>
+<section class="container boost-catalogue">
+	<div class="row wow fadeIn justify-content-center my-3">
 
-<main>
-	<div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
-
-		<!--Indicators-->
-		<ol class="carousel-indicators">
-			<li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
-			<li data-target="#carousel-example-1z" data-slide-to="1"></li>
-			<li data-target="#carousel-example-1z" data-slide-to="2"></li>
-		</ol>
-		<!--/.Indicators-->
-
-		<!--Slides-->
-		<div class="carousel-inner" role="listbox">
-
-			<!--First slide-->
-			<div class="carousel-item active">
-				<div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-					<!-- Mask & flexbox options-->
-					<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-
-						<!-- Content -->
-						<div class="text-center white-text mx-5 wow fadeIn">
-							<h1 class="mb-4">
-								<strong>Learn Bootstrap 4 with MDB</strong>
-							</h1>
-
-							<p>
-								<strong>Best & free guide of responsive web design</strong>
-							</p>
-
-							<p class="mb-4 d-none d-md-block">
-								<strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-									written versions
-									available. Create your own, stunning website.</strong>
-							</p>
-
-							<a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-								free tutorial
-								<i class="fas fa-graduation-cap ml-2"></i>
-							</a>
-						</div>
-						<!-- Content -->
-
-					</div>
-					<!-- Mask & flexbox options-->
-
-				</div>
-			</div>
-			<!--/First slide-->
-
-			<!--Second slide-->
-			<div class="carousel-item">
-				<div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%283%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-					<!-- Mask & flexbox options-->
-					<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-
-						<!-- Content -->
-						<div class="text-center white-text mx-5 wow fadeIn">
-							<h1 class="mb-4">
-								<strong>Learn Bootstrap 4 with MDB</strong>
-							</h1>
-
-							<p>
-								<strong>Best & free guide of responsive web design</strong>
-							</p>
-
-							<p class="mb-4 d-none d-md-block">
-								<strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-									written versions
-									available. Create your own, stunning website.</strong>
-							</p>
-
-							<a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-								free tutorial
-								<i class="fas fa-graduation-cap ml-2"></i>
-							</a>
-						</div>
-						<!-- Content -->
-
-					</div>
-					<!-- Mask & flexbox options-->
-
-				</div>
-			</div>
-			<!--/Second slide-->
-
-			<!--Third slide-->
-			<div class="carousel-item">
-				<div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%285%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-
-					<!-- Mask & flexbox options-->
-					<div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-
-						<!-- Content -->
-						<div class="text-center white-text mx-5 wow fadeIn">
-							<h1 class="mb-4">
-								<strong>Learn Bootstrap 4 with MDB</strong>
-							</h1>
-
-							<p>
-								<strong>Best & free guide of responsive web design</strong>
-							</p>
-
-							<p class="mb-4 d-none d-md-block">
-								<strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-									written versions
-									available. Create your own, stunning website.</strong>
-							</p>
-
-							<a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-								free tutorial
-								<i class="fas fa-graduation-cap ml-2"></i>
-							</a>
-						</div>
-						<!-- Content -->
-
-					</div>
-					<!-- Mask & flexbox options-->
-
-				</div>
-			</div>
-			<!--/Third slide-->
+		<div class="col-12 col-md-3">
 
 		</div>
-		<!--/.Slides-->
+		<div class="col-12 col-md-9">
+			<div class="row">
+				<?php foreach ($products as $product) {
+					if ($product['catalog_visibility'] !== 'visible') continue;
+					if ($product['status'] !== 'publish') continue;
+					// TODO: remove later
+					// composite  
+					// bundle
+					if ($product['type'] !== 'variable') continue;
+				?>
+					<div class="col-12 col-md-4	  my-2">
+						<div class="card">
+							<!-- Product Image -->
+							<div class="view overlay">
+								<!-- <img width="175" height="175" src="https://handphoneworldfullfeatures.myboostorder.com/wp-content/uploads/sites/321/2016/12/HANTON_FULL_TOUC_54ab9556cd519_175x175.jpg" class="attachment-shop_single size-shop_single wp-post-image" alt="HANTON_FULL_TOUC_54ab9556cd519_175x175.jpg" title="HANTON_FULL_TOUC_54ab9556cd519_175x175.jpg" srcset="https://handphoneworldfullfeatures.myboostorder.com/wp-content/uploads/sites/321/2016/12/HANTON_FULL_TOUC_54ab9556cd519_175x175.jpg 175w, https://handphoneworldfullfeatures.myboostorder.com/wp-content/uploads/sites/321/2016/12/HANTON_FULL_TOUC_54ab9556cd519_175x175-150x150.jpg 150w" sizes="(max-width: 175px) 100vw, 175px"> -->
+								<?php
+								echo "<img srcset='{$product['images'][0]['src_small']} 1x,
+									{$product['images'][0]['src_medium']} 2x,
+									src='{$product['images'][0]['src']}'
+									class='card-img-top px-1'
+									style='max-height:150px;object-fit:contain' 
+									alt='A rad wolf' />"
+								?>
+								<a>
+									<div class="mask rgba-white-slight"></div>
+								</a>
+							</div>
+							<!-- Product Description -->
+							<div class="card-body">
 
-		<!--Controls-->
-		<a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
-		<!--/.Controls-->
+								<h5 class="card-title"><?php echo $product['name'] ?> </h5>
+								<hr>
+								<?php
+								// print_r($product['sale_price']);
+								// print_r($product['status']);
+								// print_r($product['sku']);
+								// print_r($product['type']);
+								// print_r($product['attributes']);
+								// print_r($product['variations']);
+								// print_r($product['bundled_by']);
+								// print_r($product['bundled_items']);
+								?>
+								<!-- Text -->
+								<p class="card-text">
+									Some quick example text to build on the card title and make up the bulk of the card's
+									content.
+								</p>
+								<!-- Link -->
+								<a href="#!" class="black-text d-flex justify-content-end">
+									<h5>Read more <i class="fas fa-angle-double-right"></i></h5>
+								</a>
 
+							</div>
+						</div>
+					</div>
+				<?php
+				}
+				?>
+			</div>
+		</div>
+		<?php $this->load->view('pages/home/pagination') ?>
 	</div>
-	<div class="container">
-
-		<!--Navbar-->
-		<nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
-
-			<!-- Navbar brand -->
-			<span class="navbar-brand">Categories:</span>
-
-			<!-- Collapse button -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<!-- Collapsible content -->
-			<div class="collapse navbar-collapse" id="basicExampleNav">
-
-				<!-- Links -->
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="#">All
-							<span class="sr-only">(current)</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Shirts</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Sport wears</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Outwears</a>
-					</li>
-
-				</ul>
-				<!-- Links -->
-
-				<form class="form-inline">
-					<div class="md-form my-0">
-						<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-					</div>
-				</form>
-			</div>
-			<!-- Collapsible content -->
-
-		</nav>
-		<!--/.Navbar-->
-
-		<!--Section: Products v.3-->
-		<section class="text-center mb-4">
-
-			<!--Grid row-->
-			<div class="row wow fadeIn">
-
-				<!--Grid column-->
-				<div class="col-lg-3 col-md-6 mb-4">
-
-					<!--Card-->
-					<div class="card">
-
-						<!--Card image-->
-						<div class="view overlay">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top" alt="">
-							<a>
-								<div class="mask rgba-white-slight"></div>
-							</a>
-						</div>
-						<!--Card image-->
-
-						<!--Card content-->
-						<div class="card-body text-center">
-							<!--Category & Title-->
-							<a href="" class="grey-text">
-								<h5>Shirt</h5>
-							</a>
-							<h5>
-								<strong>
-									<a href="" class="dark-grey-text">Denim shirt
-										<span class="badge badge-pill danger-color">NEW</span>
-									</a>
-								</strong>
-							</h5>
-
-							<h4 class="font-weight-bold blue-text">
-								<strong>120$</strong>
-							</h4>
-
-						</div>
-						<!--Card content-->
-
-					</div>
-					<!--Card-->
-
-				</div>
-				<!--Grid column-->
-
-				<!--Grid column-->
-				<div class="col-lg-3 col-md-6 mb-4">
-
-					<!--Card-->
-					<div class="card">
-
-						<!--Card image-->
-						<div class="view overlay">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg" class="card-img-top" alt="">
-							<a>
-								<div class="mask rgba-white-slight"></div>
-							</a>
-						</div>
-						<!--Card image-->
-
-						<!--Card content-->
-						<div class="card-body text-center">
-							<!--Category & Title-->
-							<a href="" class="grey-text">
-								<h5>Sport wear</h5>
-							</a>
-							<h5>
-								<strong>
-									<a href="" class="dark-grey-text">Sweatshirt</a>
-								</strong>
-							</h5>
-
-							<h4 class="font-weight-bold blue-text">
-								<strong>139$</strong>
-							</h4>
-
-						</div>
-						<!--Card content-->
-
-					</div>
-					<!--Card-->
-
-				</div>
-				<!--Grid column-->
-
-				<!--Grid column-->
-				<div class="col-lg-3 col-md-6 mb-4">
-
-					<!--Card-->
-					<div class="card">
-
-						<!--Card image-->
-						<div class="view overlay">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg" class="card-img-top" alt="">
-							<a>
-								<div class="mask rgba-white-slight"></div>
-							</a>
-						</div>
-						<!--Card image-->
-
-						<!--Card content-->
-						<div class="card-body text-center">
-							<!--Category & Title-->
-							<a href="" class="grey-text">
-								<h5>Sport wear</h5>
-							</a>
-							<h5>
-								<strong>
-									<a href="" class="dark-grey-text">Grey blouse
-										<span class="badge badge-pill primary-color">bestseller</span>
-									</a>
-								</strong>
-							</h5>
-
-							<h4 class="font-weight-bold blue-text">
-								<strong>99$</strong>
-							</h4>
-
-						</div>
-						<!--Card content-->
-
-					</div>
-					<!--Card-->
-
-				</div>
-				<!--Grid column-->
-
-				<!--Fourth column-->
-				<div class="col-lg-3 col-md-6 mb-4">
-
-					<!--Card-->
-					<div class="card">
-
-						<!--Card image-->
-						<div class="view overlay">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg" class="card-img-top" alt="">
-							<a>
-								<div class="mask rgba-white-slight"></div>
-							</a>
-						</div>
-						<!--Card image-->
-
-						<!--Card content-->
-						<div class="card-body text-center">
-							<!--Category & Title-->
-							<a href="" class="grey-text">
-								<h5>Outwear</h5>
-							</a>
-							<h5>
-								<strong>
-									<a href="" class="dark-grey-text">Black jacket</a>
-								</strong>
-							</h5>
-
-							<h4 class="font-weight-bold blue-text">
-								<strong>219$</strong>
-							</h4>
-
-						</div>
-						<!--Card content-->
-
-					</div>
-					<!--Card-->
-
-				</div>
-				<!--Fourth column-->
-
-			</div>
-			<!--Grid row-->
-
-			<!--Grid row-->
-			<div class="row wow fadeIn">
-
-				<!--Grid column-->
-				<div class="col-lg-3 col-md-6 mb-4">
-
-					<!--Card-->
-					<div class="card">
-
-						<!--Card image-->
-						<div class="view overlay">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg" class="card-img-top" alt="">
-							<a>
-								<div class="mask rgba-white-slight"></div>
-							</a>
-						</div>
-						<!--Card image-->
-
-						<!--Card content-->
-						<div class="card-body text-center">
-							<!--Category & Title-->
-							<a href="" class="grey-text">
-								<h5>Shirt</h5>
-							</a>
-							<h5>
-								<strong>
-									<a href="" class="dark-grey-text">Denim shirt
-										<span class="badge badge-pill danger-color">NEW</span>
-									</a>
-								</strong>
-							</h5>
-
-							<h4 class="font-weight-bold blue-text">
-								<strong>120$</strong>
-							</h4>
-
-						</div>
-						<!--Card content-->
-
-					</div>
-					<!--Card-->
-
-				</div>
-				<!--Grid column-->
-
-				<!--Grid column-->
-				<div class="col-lg-3 col-md-6 mb-4">
-
-					<!--Card-->
-					<div class="card">
-
-						<!--Card image-->
-						<div class="view overlay">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg" class="card-img-top" alt="">
-							<a>
-								<div class="mask rgba-white-slight"></div>
-							</a>
-						</div>
-						<!--Card image-->
-
-						<!--Card content-->
-						<div class="card-body text-center">
-							<!--Category & Title-->
-							<a href="" class="grey-text">
-								<h5>Sport wear</h5>
-							</a>
-							<h5>
-								<strong>
-									<a href="" class="dark-grey-text">Sweatshirt</a>
-								</strong>
-							</h5>
-
-							<h4 class="font-weight-bold blue-text">
-								<strong>139$</strong>
-							</h4>
-
-						</div>
-						<!--Card content-->
-
-					</div>
-					<!--Card-->
-
-				</div>
-				<!--Grid column-->
-
-				<!--Grid column-->
-				<div class="col-lg-3 col-md-6 mb-4">
-
-					<!--Card-->
-					<div class="card">
-
-						<!--Card image-->
-						<div class="view overlay">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg" class="card-img-top" alt="">
-							<a>
-								<div class="mask rgba-white-slight"></div>
-							</a>
-						</div>
-						<!--Card image-->
-
-						<!--Card content-->
-						<div class="card-body text-center">
-							<!--Category & Title-->
-							<a href="" class="grey-text">
-								<h5>Sport wear</h5>
-							</a>
-							<h5>
-								<strong>
-									<a href="" class="dark-grey-text">Grey blouse
-										<span class="badge badge-pill primary-color">bestseller</span>
-									</a>
-								</strong>
-							</h5>
-
-							<h4 class="font-weight-bold blue-text">
-								<strong>99$</strong>
-							</h4>
-
-						</div>
-						<!--Card content-->
-
-					</div>
-					<!--Card-->
-
-				</div>
-				<!--Grid column-->
-
-				<!--Fourth column-->
-				<div class="col-lg-3 col-md-6 mb-4">
-
-					<!--Card-->
-					<div class="card">
-
-						<!--Card image-->
-						<div class="view overlay">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top" alt="">
-							<a>
-								<div class="mask rgba-white-slight"></div>
-							</a>
-						</div>
-						<!--Card image-->
-
-						<!--Card content-->
-						<div class="card-body text-center">
-							<!--Category & Title-->
-							<a href="" class="grey-text">
-								<h5>Outwear</h5>
-							</a>
-							<h5>
-								<strong>
-									<a href="" class="dark-grey-text">Black jacket</a>
-								</strong>
-							</h5>
-
-							<h4 class="font-weight-bold blue-text">
-								<strong>219$</strong>
-							</h4>
-
-						</div>
-						<!--Card content-->
-
-					</div>
-					<!--Card-->
-
-				</div>
-				<!--Fourth column-->
-
-			</div>
-			<!--Grid row-->
-
-		</section>
-		<!--Section: Products v.3-->
-
-		<!--Pagination-->
-		<nav class="d-flex justify-content-center wow fadeIn">
-			<ul class="pagination pg-blue">
-
-				<!--Arrow left-->
-				<li class="page-item disabled">
-					<a class="page-link" href="#" aria-label="Previous">
-						<span aria-hidden="true">&laquo;</span>
-						<span class="sr-only">Previous</span>
-					</a>
-				</li>
-
-				<li class="page-item active">
-					<a class="page-link" href="#">1
-						<span class="sr-only">(current)</span>
-					</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="#">2</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="#">3</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="#">4</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="#">5</a>
-				</li>
-
-				<li class="page-item">
-					<a class="page-link" href="#" aria-label="Next">
-						<span aria-hidden="true">&raquo;</span>
-						<span class="sr-only">Next</span>
-					</a>
-				</li>
-			</ul>
-		</nav>
-		<!--Pagination-->
-
-	</div>
-</main>
+</section>

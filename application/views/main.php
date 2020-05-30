@@ -15,10 +15,11 @@ $this->load->view('shared/head');
 	<?php
 	$this->load->view('shared/nav');
 	?>
-	<?php
-	echo !empty($content) ? $content : '';
-	?>
-
+	<main style="margin-top:100px">
+		<?php
+		echo !empty($content) ? $content : '';
+		?>
+	</main>
 	<?php
 	$this->load->view('shared/script');
 	?>

@@ -8,6 +8,7 @@ class api
   private $url;
   private $api_password;
   private $api_username;
+  private $response;
 
   function __construct()
   {
@@ -19,8 +20,11 @@ class api
 
     // Init Curl  
     $this->curl = curl_init();
+
     curl_setopt_array($this->curl, array(
       CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_VERBOSE => true,
+      CURLOPT_HEADER => true,
       CURLOPT_ENCODING => "",
       CURLOPT_MAXREDIRS => 10,
       CURLOPT_TIMEOUT => 0,
@@ -33,18 +37,56 @@ class api
 
   public function GET($path = '', $param = '')
   {
-    // Query Builder
-    if (!empty($param)) $param = http_build_query($param);
+    $query = (!empty($param)) ? '?' . http_build_query($param) : '';
 
-    curl_setopt($this->curl, CURLOPT_URL, $this->url . $path . '?' . $param);
+    curl_setopt($this->curl, CURLOPT_URL, $this->url . $path . $query);
 
     try {
-      $response = curl_exec($this->curl);
-    } catch (Exception $e) {
-      $response = 'Caught exception: ' . $e->getMessage() . "\n";
-    }
-    curl_close($this->curl);
+      $tempResponse    = curl_exec($this->curl);
+      if (curl_error($this->curl)) {
 
-    return $response;
+        curl_close($this->curl);
+
+        return $this->response = array(
+          'success' => false,
+          'error' => curl_error($this->curl),
+        );
+      }
+
+      $header_size = curl_getinfo($this->curl, CURLINFO_HEADER_SIZE);
+      $body        = substr($tempResponse, $header_size);
+      $header      = $this->extract_headers($tempResponse);
+
+      curl_close($this->curl);
+      return $this->response = array(
+        'success' => true,
+        'header'  => $header,
+        'body'    => json_decode($body, true),
+      );
+    } catch (Exception $e) {
+
+      curl_close($this->curl);
+      return $this->response = array(
+        'success' => false,
+        'error'   => 'Caught exception: ' . $e->getMessage() . "\n",
+      );
+    }
+  }
+
+  private function extract_headers($response)
+  {
+    $headers = array();
+
+    $header_text = substr($response, 0, strpos($response, "\r\n\r\n"));
+
+    foreach (explode("\r\n", $header_text) as $i => $line)
+      if ($i === 0)
+        $headers['http_code'] = $line;
+      else {
+        list($key, $value) = explode(': ', $line);
+        $headers[$key] = $value;
+      }
+
+    return $headers;
   }
 }

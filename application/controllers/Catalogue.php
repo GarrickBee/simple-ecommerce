@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Home extends CI_Controller
+class Catalogue extends CI_Controller
 {
 
 	/**
@@ -21,7 +21,24 @@ class Home extends CI_Controller
 	 */
 	public function index()
 	{
-		$pages = $this->load->view('pages/home/home', '', true);
+		$page = empty($this->input->get('page')) ? 1 : $this->input->get('page');
+
+		$param['page'] = $page;
+		$products = $this->api->GET('/products', $param);
+
+		$currentPage = $page;
+		$totalPages = $products['header']['X-WP-TotalPages'];
+
+		$view['products']     = $products['body'];
+		$view['totalPages']   = $totalPages;
+		$view['currentPage']  = $page;
+		$view['previousPage'] = $currentPage <= 1 ? false : true;
+		$view['nextPage']     = $currentPage >= $totalPages ? false : true;
+
+		// Load View Pages
+		$pages = $this->load->view('pages/home/home', $view, true);
+
+		// Final View Load
 		BOOST::loadPage($pages);
 	}
 
@@ -29,7 +46,6 @@ class Home extends CI_Controller
 	{
 		$data['query'] = 'test';
 		$result = $this->api->GET('/products');
-		$result = json_decode($result, true);
 		BOOST::print_array($result);
 	}
 }

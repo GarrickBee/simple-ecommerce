@@ -18,7 +18,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.18.0/css/mdb.min.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <style>
-        <?php echo $scss ?>
+        <?php print($scss) ?>
     </style>
 
     <style type="text/css">

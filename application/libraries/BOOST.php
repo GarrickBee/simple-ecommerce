@@ -17,11 +17,11 @@ class BOOST
     $scss = new Compiler();
     $scss->setImportPaths('assets/scss/');
     $scss->setFormatter('ScssPhp\ScssPhp\Formatter\Compressed');
-    $head['scss'] = $scss->compile('@import "main.scss";');
 
-    $data['head'] = $head;
-    $data['content']  = empty($page) ? '' : $page;
-    $data['script'] = $script;
+    $data['scss']    = $scss->compile('@import "main.scss";');
+    $data['head']    = $head;
+    $data['content'] = empty($page) ? '' : $page;
+    $data['script']  = $script;
 
     return self::$CI->load->view('main', $data);
   }
