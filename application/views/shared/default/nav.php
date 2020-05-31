@@ -20,7 +20,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
       <ul class="navbar-nav nav-flex-icons">
         <li class="nav-item">
-          <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/">Member</a>
+          <a class="nav-link waves-effect" href="#" onclick="toggleMember()">Member</a>
         </li>
       </ul>
 

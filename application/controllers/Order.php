@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Market extends CI_Controller
+class Order extends CI_Controller
 {
 	private $page;
 	private $view = array();
@@ -28,20 +28,7 @@ class Market extends CI_Controller
 		BOOST::loadPage($this->page);
 	}
 
-	public function product($id = '')
-	{
-		if (empty($id)) return 	$this->load->view('404');
-
-		$productModel = BOOST::getModel('product');
-		$product = $productModel->getProduct($id);
-
-		$this->view['product']     = $product['body'];
-		// Generate Page
-		$this->page = $this->load->view('pages/market/product', $this->view, true);
-		BOOST::loadPage($this->page);
-	}
-
-	public function order()
+	public function submit()
 	{
 	}
 }
