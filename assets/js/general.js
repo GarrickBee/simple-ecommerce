@@ -34,11 +34,12 @@ function signUp(e) {
         success: function (data) {
             if (!data.success) {
                 notify(data.message, 'danger');
-                $(".signUpError").html(data.message); 3
-                Cookies.set('loginToken', data.token);
+                $(".signUpError").html(data.message);
+
             } else {
                 notify('User Created Sucessfully', 'success');
                 $('.modal').modal('hide');
+                Cookies.set('loginToken', data.token);
             }
         },
         error: function (data) {

@@ -36,14 +36,6 @@ class Users  extends RestController
             'secret' => $_ENV['SECRET']
         ]);
 
-        // Set Cookie
-        $cookie = array(
-            'name'   => 'loginToken',
-            'value'  => $token,
-            'secure' => TRUE
-        );
-        $this->input->set_cookie($cookie);
-
         $response = [
             'success' => 'true',
             'message' => 'User Created Success',
