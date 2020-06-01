@@ -43,5 +43,67 @@ class Market extends CI_Controller
 
 	public function order()
 	{
+		// Load Model 
+		$orderModel = BOOST::getModel('order');
+		$productModel = BOOST::getModel('product');
+
+		// Verify Login
+		$loginToken = get_cookie('loginToken');
+		$userData = $this->validateLogin($loginToken);
+		if (!$userData) {
+			BOOST::notify('Kindly Login Before Purchase');
+			return 	redirect('/');
+		};
+
+		// Check param
+		$productPost = $this->input->post('product');
+
+		if (empty($productPost)) {
+			BOOST::notify('No Product Selected');
+			return 	redirect('/');
+		}
+
+		if (empty($productPost['quantity'])) {
+			BOOST::notify('Product quantity cannot less than zero', 'danger');
+			return 	redirect('/');
+		}
+
+		$product = $productModel->getProduct($productPost['variationId']);
+
+		if (!$product['success']) {
+			BOOST::notify($product['message'], 'danger');
+			return 	redirect('/');
+		}
+		$productBody = $product['body'];
+		$productBody['purchaseQuantity'] = $productPost['quantity'];
+
+		// Generate Product Detail for order
+		$order = $orderModel->createOrder($productBody, $userData['data']['id']);
+		// BOOST::print_array($productBody);
+		// Add Product 
+		$orderProductId = $orderModel->addOrderProduct($productBody, $order['id']);
+
+		// Advance to payment Gateway 
+
+		// Assume Success Payment and direct to payment call back
+		redirect("payment/callback/?order={$order['number']}&payment=success&hash=hash");
+	}
+
+	private function validateLogin($loginToken = '')
+	{
+		$userModel = BOOST::getModel('user');
+		$tokenData = (array) AUTHORIZATION::validateToken($loginToken);
+
+		if ($tokenData['secret'] !== $_ENV['SECRET']) {
+			return false;
+		}
+
+		$userLogin = $userModel->validateUser($tokenData);
+
+		if (!$userLogin['success']) {
+			return false;
+		}
+
+		return $userLogin;
 	}
 }

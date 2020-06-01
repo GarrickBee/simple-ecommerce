@@ -49,7 +49,7 @@ class api
 
         return $this->response = array(
           'success' => false,
-          'error' => curl_error($this->curl),
+          'message' => curl_error($this->curl),
         );
       }
 
@@ -68,7 +68,7 @@ class api
       curl_close($this->curl);
       return $this->response = array(
         'success' => false,
-        'error'   => 'Caught exception: ' . $e->getMessage() . "\n",
+        'message'   => 'Caught exception: ' . $e->getMessage() . "\n",
       );
     }
   }

@@ -14,8 +14,6 @@ class Users  extends RestController
     {
         // Construct the parent class
         parent::__construct();
-        $this->load->helper(['jwt', 'authorization']);
-        $this->load->helper('cookie');
     }
 
 

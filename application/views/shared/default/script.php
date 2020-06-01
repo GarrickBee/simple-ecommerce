@@ -1,7 +1,4 @@
-<?php
-defined('BASEPATH') or exit('No direct script access allowed');
-echo "hello";
-?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -22,4 +19,13 @@ echo "hello";
 <script type="text/javascript">
   // Animations initialization
   new WOW().init();
+
+  $(document).ready(() => {
+    <?php
+    if ($_SESSION['notify']) {
+      $notify = $_SESSION['notify'];
+      echo "notify('{$notify['message']}','{$notify['state']}')";
+    }
+    ?>
+  });
 </script>

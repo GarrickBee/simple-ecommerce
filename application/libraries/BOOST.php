@@ -26,44 +26,15 @@ class BOOST
     return self::$CI->load->view('main', $data);
   }
 
-  // SECURITY
-  public static function security()
-  {
-    if (empty($_SESSION['flytor_user'])) {
-      $system_message[] = BOOST::prepare_message('Access Denied', 'Kindly login with your email and password', 'Danger');
-      BOOST::system_alert($system_message);
-      return redirect('login');
-      exit();
-    }
-    // USER DATA VARIABLE
-    return $_SESSION['flytor_user'];
-  }
-
-
-  // SYSTEM MESSAGE FUNCTION
-  // PREPARE MESSAGE
-  public static function prepare_message($system_alert_title = '', $system_alert_message = '', $system_alert_state = '', $system_alert_delay = '')
-  {
-    $flash_data = array(
-      'system_alert_title'   => $system_alert_title,
-      'system_alert_message' => $system_alert_message,
-      'system_alert_state'   => $system_alert_state,
-      'system_alert_delay'   => $system_alert_delay,
-    );
-    return $flash_data;
-  }
-
   // GENERATE MESSAGE
-  public static function system_alert($flash_data  = array())
+  public static function notify($message = 'No Message', $state = 'info')
   {
-    self::$CI->session->set_flashdata('system_alert', $flash_data);
+    return  self::$CI->session->set_flashdata('notify', array(
+      "message" => $message,
+      "state" => $state
+    ));
   }
 
-  // SWEET ALERT MESSAGE
-  public static function system_sweet_alert($sweet_message = array())
-  {
-    self::$CI->session->set_flashdata('system_sweet_alert', $sweet_message);
-  }
 
   public static function getModel($name = '')
   {

@@ -125,9 +125,10 @@ class User_model extends CI_Model
         'message' => 'User not found'
       );
     }
+
     return array(
       'success' => true,
-      'data' => $user
+      'data' => $user->row_array()
     );
   }
 }
