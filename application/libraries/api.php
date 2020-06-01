@@ -2,7 +2,7 @@
 
 use ScssPhp\ScssPhp\Compiler;
 
-class api
+class Api
 {
   private $curl;
   private $url;
