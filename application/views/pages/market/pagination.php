@@ -1,3 +1,6 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+?>
 <nav class="d-flex justify-content-center wow fadeIn">
     <ul class="pagination pg-blue">
         <li class="page-item <?php echo $previousPage ? '' : 'disabled'; ?>">

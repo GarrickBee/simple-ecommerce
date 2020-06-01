@@ -62,7 +62,6 @@ class Market extends CI_Controller
 			BOOST::notify('No Product Selected');
 			return 	redirect('/');
 		}
-
 		if (empty($productPost['quantity'])) {
 			BOOST::notify('Product quantity cannot less than zero', 'danger');
 			return 	redirect('/');
@@ -74,12 +73,13 @@ class Market extends CI_Controller
 			BOOST::notify($product['message'], 'danger');
 			return 	redirect('/');
 		}
+
 		$productBody = $product['body'];
 		$productBody['purchaseQuantity'] = $productPost['quantity'];
 
 		// Generate Product Detail for order
 		$order = $orderModel->createOrder($productBody, $userData['data']['id']);
-		// BOOST::print_array($productBody);
+
 		// Add Product 
 		$orderProductId = $orderModel->addOrderProduct($productBody, $order['id']);
 

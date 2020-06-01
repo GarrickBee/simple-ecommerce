@@ -7,12 +7,35 @@ class Order_model extends CI_Model
     parent::__construct();
   }
 
+  public function getOrders($userId = '')
+  {
+    $this->db->where('user_id', $userId);
+    $orders = $this->db->get('orders');
+    return $orders->result_array();
+  }
+
   public function getOrder($orderNumber = '')
   {
     $this->db->where('number', $orderNumber);
     $order = $this->db->get('orders');
     return $order->row_array();
   }
+
+  public function getAuthOrder($orderNumber = '', $userID = '')
+  {
+    $this->db->where('user_id', $userID);
+    $this->db->where('number', $orderNumber);
+    $order = $this->db->get('orders');
+    return $order->row_array();
+  }
+
+  public function getOrderProducts($orderId = '')
+  {
+    $this->db->where('order_id', $orderId);
+    $products = $this->db->get('order_products')->result_array();
+    return $products;
+  }
+
   public function createOrder($product = '', $userID = '', $type = 'normal')
   {
     $orderNumber = $this->generateOrderNumber() . $userID;
