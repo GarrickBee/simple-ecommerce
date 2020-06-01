@@ -34,3 +34,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 .env.production
 package-lock.json
 node_modules
+.well-known
+cgi-bin
