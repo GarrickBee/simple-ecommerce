@@ -20,7 +20,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
       <ul class="navbar-nav nav-flex-icons">
         <li class="nav-item">
           <a class="nav-link waves-effect" href="#" onclick="toggleMember()">
-            Member
+            <?php echo !empty($_COOKIE['loginToken']) ? "Dashboard" : "Login before order"; ?>
           </a>
         </li>
         <?php

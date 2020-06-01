@@ -56,7 +56,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								</p>
 								<!-- Link -->
 								<a href="<?php echo base_url('market/product/') . $product['id'] ?>" class="black-text d-flex justify-content-end">
-									<h5>Item Details<i class="fas fa-angle-double-right"></i></h5>
+									<h5>Item Details</h5>
 								</a>
 
 							</div>

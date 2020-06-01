@@ -16,37 +16,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.18.0/css/mdb.min.css" rel="stylesheet">
+    <!-- Datatables  -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />
     <!-- Bootstrap core CSS -->
     <style>
         <?php print($scss) ?>
-    </style>
-
-    <style type="text/css">
-        html,
-        body,
-        header,
-        .carousel {
-            height: 60vh;
-        }
-
-        @media (max-width: 740px) {
-
-            html,
-            body,
-            header,
-            .carousel {
-                height: 100vh;
-            }
-        }
-
-        @media (min-width: 800px) and (max-width: 850px) {
-
-            html,
-            body,
-            header,
-            .carousel {
-                height: 100vh;
-            }
-        }
     </style>
 </head>

@@ -21,7 +21,7 @@ class BOOST
     $data['scss']    = $scss->compile('@import "main.scss";');
     $data['head']    = $head;
     $data['content'] = empty($page) ? '' : $page;
-    $data['script']  = $script;
+    $data['scripts']  = $script;
 
     return self::$CI->load->view('main', $data);
   }
