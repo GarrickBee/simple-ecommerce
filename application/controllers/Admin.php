@@ -11,7 +11,7 @@ class Admin extends CI_Controller
         return;
     }
 
-    public function login()
+    public function dashboard()
     {
     }
 }

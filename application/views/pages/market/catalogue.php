@@ -52,12 +52,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								?>
 								<!-- Text -->
 								<p class="card-text">
-									Some quick example text to build on the card title and make up the bulk of the card's
-									content.
+									Item Desription
 								</p>
 								<!-- Link -->
-								<a href="#!" class="black-text d-flex justify-content-end">
-									<h5>Read more <i class="fas fa-angle-double-right"></i></h5>
+								<a href="<?php echo base_url('market/product/') . $product['id'] ?>" class="black-text d-flex justify-content-end">
+									<h5>Item Details<i class="fas fa-angle-double-right"></i></h5>
 								</a>
 
 							</div>

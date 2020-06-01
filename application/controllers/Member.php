@@ -62,6 +62,13 @@ class Member extends CI_Controller
         BOOST::loadPage($this->page);
     }
 
+    public function logout()
+    {
+        delete_cookie('loginToken');
+        BOOST::notify('Log Out Successfully', 'success');
+        return redirect('/');
+    }
+
     private function validateLogin()
     {
         $loginToken = get_cookie('loginToken');

@@ -59,9 +59,9 @@ class Order_model extends CI_Model
       'sku'      => $product['sku'],
       'price'    => empty($product['sale_price']) ? $product['regular_price'] : $product['sale_price'],
       'quantity' => $product['purchaseQuantity'],
-      'image'    => $product['images'][0]['src_medium'],
+      'image'    => $product['images'][0]['src_small'],
       'unit'     => $product['attributes'][0]['option'],
-      'href'     => $product['_links']['self'][0]['href']
+      'href'     => base_url("market/product/") . $product['id']
     ];
     $this->db->insert('order_products', $data);
 

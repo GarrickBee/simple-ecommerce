@@ -17,13 +17,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
     <!-- Nav Items -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
       <ul class="navbar-nav nav-flex-icons">
         <li class="nav-item">
-          <a class="nav-link waves-effect" href="#" onclick="toggleMember()">Member</a>
+          <a class="nav-link waves-effect" href="#" onclick="toggleMember()">
+            Member
+          </a>
         </li>
+        <?php
+        if (!empty($_COOKIE['loginToken'])) {
+        ?>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="<?php echo base_url("member/logout") ?> ">
+              Log Out
+            </a>
+          </li>
+        <?php
+        }
+        ?>
       </ul>
-
     </div>
 
   </div>
