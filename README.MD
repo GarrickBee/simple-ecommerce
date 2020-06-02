@@ -1,16 +1,23 @@
-**[Website Link](https://boostorder.garrick.monster)**
 
 ## BoostOrder Project
+**[Website Link](https://boostorder.garrick.monster)**
 
+## Design Structure 
+- Using MVC Framework Codeigniter 3
+- Login Session using JWT token instead of $_SESSION, faster save memory
+- Basic Order function 
+- Admin link go to `/admin/dashboard`
+- Assuming admin is built separately, assume is login. Future can build with different admin id so that different vendor can join in
+- Push notifications wasnt built but as stated in the video , firebase can be use.
 
 ## Technology & Framework
-This project is build using [PHP 7](https://www.php.net/) with [Codeigniter 3](https://codeigniter.com/) Framework.
+- [PHP 7](https://www.php.net/) with [Codeigniter 3](https://codeigniter.com/) Framework.
 
-Database is constructed using [MySql](https://www.mysql.com/).  
+- Database is constructed using [MySql](https://www.mysql.com/).  
 
-Server Engine Apache 
+- Server Engine Apache 
 
-The UI Design is using [Boostrap Material](https://mdbootstrap.com/)
+- The UI Design is using [Boostrap Material](https://mdbootstrap.com/)
 
 ## Plugin Used
 
@@ -39,9 +46,9 @@ You can clone or download the file to your respective directory. Make sure your 
 - Run Composer
 
 ```sh
-composer update
+composer install
 ```
-- Extract `maskfinder.sql` to your database
+- Extract `dummy.sql` to your database
 - Rename `.env.example` to `.env`
 - Edit your environment variable at `.env`  
 - Rename  `.htaccess.example`  to `.htaccess`
