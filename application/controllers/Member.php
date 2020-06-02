@@ -54,7 +54,7 @@ class Member extends CI_Controller
         }
 
         $products = $orderModel->getOrderProducts($order['id']);
-
+        $orderModel->updateOrder($order['id'], array('notify' => 'read'));
         // Load View
         $this->view['order'] = $order;
         $this->view['products'] = $products;
@@ -72,6 +72,9 @@ class Member extends CI_Controller
     private function validateLogin()
     {
         $loginToken = get_cookie('loginToken');
+        if (empty($loginToken)) {
+            return false;
+        }
         $userModel = BOOST::getModel('user');
         $tokenData = (array) AUTHORIZATION::validateToken($loginToken);
 

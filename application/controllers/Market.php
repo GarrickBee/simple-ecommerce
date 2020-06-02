@@ -15,12 +15,21 @@ class Market extends CI_Controller
 		$totalPages = $products['header']['X-WP-TotalPages'];
 		$currentPage = $products['currentPage'];
 
+		// Notification Button
+		$notifications = array();
+		$userData = $this->validateLogin();
+		if ($userData) {
+			$orderModel = BOOST::getModel('order');
+			$notifications = $orderModel->getNotifyOrders($userData['data']['id']);
+		}
+
 		// View Datas
 		$this->view['products']     = $products['body'];
 		$this->view['totalPages']   = $totalPages;
 		$this->view['currentPage']  = $currentPage;
 		$this->view['previousPage'] = $currentPage <= 1 ? false : true;
 		$this->view['nextPage']     = $currentPage >= $totalPages ? false : true;
+		$this->view['notifications'] = $notifications;
 
 		// Generate Page
 		$this->page = $this->load->view('pages/market/catalogue', $this->view, true);
@@ -48,8 +57,7 @@ class Market extends CI_Controller
 		$productModel = BOOST::getModel('product');
 
 		// Verify Login
-		$loginToken = get_cookie('loginToken');
-		$userData = $this->validateLogin($loginToken);
+		$userData = $this->validateLogin();
 		if (!$userData) {
 			BOOST::notify('Kindly Login Before Purchase');
 			return 	redirect('/');
@@ -89,8 +97,12 @@ class Market extends CI_Controller
 		redirect("payment/callback/?order={$order['number']}&payment=success&hash=hash");
 	}
 
-	private function validateLogin($loginToken = '')
+	private function validateLogin()
 	{
+		$loginToken = get_cookie('loginToken');
+		if (empty($loginToken)) {
+			return false;
+		}
 		$userModel = BOOST::getModel('user');
 		$tokenData = (array) AUTHORIZATION::validateToken($loginToken);
 

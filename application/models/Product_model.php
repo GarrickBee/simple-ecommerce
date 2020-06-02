@@ -11,8 +11,12 @@ class Product_model extends CI_Model
   {
     // Query Param
     $page = empty($this->input->get('page')) ? 1 : $this->input->get('page');
+    // $type = empty($this->input->get('type')) ? 'variable' : $this->input->get('type');
+
+    // if (empty($this->input->get('type'))) $param['category'] = $this->input->get('category');
 
     $param['page'] = $page;
+    // $param['type'] =
     $products = $this->api->GET('/products', $param);
     $products['currentPage'] = $page;
 

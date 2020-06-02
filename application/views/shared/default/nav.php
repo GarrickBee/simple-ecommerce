@@ -17,7 +17,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
     <!-- Nav Items -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav nav-flex-icons">
+      <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link waves-effect" href="#" onclick="toggleMember()">
             <?php echo !empty($_COOKIE['loginToken']) ? "Dashboard" : "Login before order"; ?>
@@ -34,6 +34,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <?php
         }
         ?>
+
       </ul>
     </div>
 

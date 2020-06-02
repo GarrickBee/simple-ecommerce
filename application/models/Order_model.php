@@ -29,6 +29,14 @@ class Order_model extends CI_Model
     return $order->row_array();
   }
 
+  public function getNotifyOrders($userId = '')
+  {
+    $this->db->where('user_id', $userId);
+    $this->db->where('notify', 'notify');
+    $orders = $this->db->get('orders');
+    return $orders->result_array();
+  }
+
   public function getOrderProducts($orderId = '')
   {
     $this->db->where('order_id', $orderId);
@@ -73,6 +81,8 @@ class Order_model extends CI_Model
   public function updateOrder($orderId = '', $param = '')
   {
     $data['modified'] = date("Y-m-d H:i:s");
+
+    if (!empty($param['notify'])) $data['notify'] = $param['notify'];
 
     if (!empty($param['status'])) $data['status'] = $param['status'];
     if (!empty($param['payment'])) $data['payment'] = $param['payment'];
